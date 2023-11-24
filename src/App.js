@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { Button } from '@mui/material';
+import styled from 'styled-components';
+
+import GlobalButton, { StyledButton } from './component/Button';
+
+const Container = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+`;
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<Container>
+			<GlobalButton />
+			<Button type='button' variant='contained'>
+				Click Me
+			</Button>
+			<StyledButton fontSize='20px' radius='10px' padding='1rem 2rem' theme='secondary' />
+			<StyledButton fontSize='10px' radius='2px' padding='0.5rem 1rem' theme='primary' />
+		</Container>
+	);
 }
 
 export default App;

@@ -1,5 +1,4 @@
 import { GoogleLogin, useGoogleLogin, googleLogout } from '@react-oauth/google';
-import axios from 'axios';
 import { Button } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { isEmpty } from 'lodash';

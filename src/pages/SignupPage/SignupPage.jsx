@@ -18,41 +18,53 @@ const SignupPage = () => {
 		console.error(error);
 	};
 
-	const logInHandler = useGoogleLogin({
-		onSuccess: (response) => setUserInfo(response),
-		onError: (error) => console.error(`Log in Field: ${error}`),
-	});
+	// const logInHandler = useGoogleLogin({
+	// 	onSuccess: (response) => setUserInfo(response),
+	// 	onError: (error) => console.error(`Log in Field: ${error}`),
+	// });
+
+	const logInHandler = async () => {
+		const width = 450;
+		const height = 600;
+		const left = (window.screen.width - width) / 2;
+		const top = (window.screen.height - height) / 2;
+		window.open(
+			'http://localhost:8000/api/v1/auth/google',
+			'popup',
+			`height=${height},width=${width},top=${top},left=${left}`
+		);
+	};
 
 	const logOutHandler = () => {
 		googleLogout();
 		setProfile(null);
 	};
 
-	useEffect(() => {
-		const abortController = new AbortController();
+	// useEffect(() => {
+	// 	const abortController = new AbortController();
 
-		if (userInfo && !isEmpty(userInfo)) {
-			axios
-				.get(
-					`https://www.googleapis.com/oauth2/v3/userinfo?access_token=${userInfo.access_token}`,
-					{
-						headers: {
-							Authorization: `Bearer ${userInfo.access_token}`,
-							Accept: 'application/json',
-						},
-						signal: abortController.signal,
-					}
-				)
-				.then((response) => {
-					setProfile(response.data);
-				})
-				.catch((error) => console.error(error));
-		}
+	// 	if (userInfo && !isEmpty(userInfo)) {
+	// 		axios
+	// 			.get(
+	// 				`https://www.googleapis.com/oauth2/v3/userinfo?access_token=${userInfo.access_token}`,
+	// 				{
+	// 					headers: {
+	// 						Authorization: `Bearer ${userInfo.access_token}`,
+	// 						Accept: 'application/json',
+	// 					},
+	// 					signal: abortController.signal,
+	// 				}
+	// 			)
+	// 			.then((response) => {
+	// 				setProfile(response.data);
+	// 			})
+	// 			.catch((error) => console.error(error));
+	// 	}
 
-		return () => {
-			abortController.abort();
-		};
-	}, [userInfo]);
+	// 	return () => {
+	// 		abortController.abort();
+	// 	};
+	// }, [userInfo]);
 
 	return (
 		<div>
